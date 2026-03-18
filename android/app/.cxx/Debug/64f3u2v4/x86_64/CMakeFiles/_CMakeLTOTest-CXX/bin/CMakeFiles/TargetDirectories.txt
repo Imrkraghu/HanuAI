@@ -1,0 +1,4 @@
+/home/admin1/Documents/rohit/RRSA/attendance/Hanuai/android/app/.cxx/Debug/64f3u2v4/x86_64/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+/home/admin1/Documents/rohit/RRSA/attendance/Hanuai/android/app/.cxx/Debug/64f3u2v4/x86_64/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+/home/admin1/Documents/rohit/RRSA/attendance/Hanuai/android/app/.cxx/Debug/64f3u2v4/x86_64/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+/home/admin1/Documents/rohit/RRSA/attendance/Hanuai/android/app/.cxx/Debug/64f3u2v4/x86_64/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,60 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Metro bundler cache
+.expo/
+.expo-shared/
+.expo-cache/
+.expo-cli/
+.expo-packager-cache/
+
+# React Native packager
+.packager/
+.bundle/
+
+# Build outputs
+android/app/build/
+ios/build/
+ios/Pods/
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+DerivedData/
+
+# Gradle files
+.gradle/
+build/
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+project.xcworkspace/
+xcuserdata/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Misc
+*.swp
+*.swo
