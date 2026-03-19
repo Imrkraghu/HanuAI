@@ -7,11 +7,14 @@ import LoginScreen from '../screens/login/login';
 import Dashboard from '../screens/dashboard/DashBoard';
 import SettingsScreen from '../screens/setting/setting';
 import SignupScreen from '../screens/signup/signup';
+import FaceDetectionScreen from '../screens/markattendance/markattendance';
 
 export type RootStackParamList = {
   Login: undefined;
   Dashboard: undefined;
   Settings: undefined;
+  markattendance: undefined;
+  Signup: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -19,7 +22,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Dashboard">
+      <Stack.Navigator initialRouteName="markattendance">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -35,11 +38,8 @@ export default function AppNavigator() {
           component={SettingsScreen}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
-          name="Signup"
-          component={SignupScreen}
-          options={{ headerShown: false }}
-        />
+         <Stack.Screen name="Signup" component={SignupScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="markattendance" component={FaceDetectionScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

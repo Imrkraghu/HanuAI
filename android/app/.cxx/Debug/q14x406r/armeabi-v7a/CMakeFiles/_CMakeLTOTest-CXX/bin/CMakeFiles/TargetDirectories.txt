@@ -1,4 +1,0 @@
-/home/admin1/Documents/hanuai/android/app/.cxx/Debug/q14x406r/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
-/home/admin1/Documents/hanuai/android/app/.cxx/Debug/q14x406r/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
-/home/admin1/Documents/hanuai/android/app/.cxx/Debug/q14x406r/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
-/home/admin1/Documents/hanuai/android/app/.cxx/Debug/q14x406r/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

@@ -15,6 +15,8 @@ type RootStackParamList = {
   Login: undefined;
   Dashboard: undefined;
   Settings: undefined;
+  markattendance: undefined;
+  Signup: undefined;
 };
  
 
@@ -230,9 +232,9 @@ const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(
               </TouchableOpacity>
             </View>
           ) : (
-            <TouchableOpacity style={styles.startBtn} onPress={handleStartWorking} activeOpacity={0.85}>
-              <Text style={styles.startBtnText}>Start Working</Text>
-            </TouchableOpacity>
+             <TouchableOpacity style={styles.startBtn} onPress={() => navigation.navigate('markattendance')} activeOpacity={0.85}>
+             <Text style={styles.startBtnText}>Start Working</Text>
+          </TouchableOpacity>
           )}
         </View>
 
