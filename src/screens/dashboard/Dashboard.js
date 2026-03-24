@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { apiCall } from '../../utils/api';
+import {notify, showConfirm} from '../../utils/notification/notification';
+import { getCurrentDateTime } from '../../utils/datetime';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -74,7 +77,6 @@ export const NAV_TABS = [
   { icon: '🏠', label: 'Home', active: false },
   { icon: '📅', label: 'Task',      active: false },
   { icon: '📋', label: 'Leave',      active: false },
-  { icon: '💳', label: 'Reimburse',  active: false },
   { icon: '⏰', label: 'Attendance', active: false },
 ];
 
@@ -241,11 +243,13 @@ export function useDashboard() {
 
   // ── User
   const [user, setUser] = useState(null);
+  const [currentCheckOutContext, setCurrentCheckOutContext] = useState(null);
   useEffect(() => {
     (async () => {
       try {
         const stored = await AsyncStorage.getItem('attendanceUser');
         if (stored) setUser(JSON.parse(stored));
+        console.log('Loaded user from storage:', stored);
       } catch (e) {
         console.warn('Failed to load user:', e);
       }
@@ -276,6 +280,46 @@ export function useDashboard() {
   const [elapsed,   setElapsed]   = useState(0);
   const timerRef                  = useRef(null);
 
+useEffect(() => {
+  const fetchTodayAttendance = async () => {
+    try {
+      console.log('Fetching today\'s attendance for user ID:', user.id);
+      const result = await apiCall('today-attendance?employee_id=' + user.id, 'GET');
+      console.log('Attendance API result:', result);
+      if (result && result.success && result.record) {
+        if (result.record.check_in_time) {
+          setIsWorking(true);
+           // Parse the check-in time string into a Date
+          const checkIn = new Date(`${result.record.date}T${result.record.check_in_time}`);
+
+          // Calculate elapsed seconds since check-in
+          const now = new Date();
+          const diffSecs = Math.floor((now.getTime() - checkIn.getTime()) / 1000);
+
+          setElapsed(diffSecs); // seed timer from check-in
+          const workHours = diffSecs / 3600;
+          setCurrentCheckOutContext({ record: result.record, workHours });
+        } else {
+          setIsWorking(false);
+          setElapsed(0);
+          setCurrentCheckOutContext(null);
+        }
+      } else {
+        setIsWorking(false);
+        setElapsed(0);
+      }
+    } catch (e) {
+      console.warn('Failed to fetch today\'s attendance:', e);
+      setIsWorking(false);
+    }
+  };
+
+  if (user?.id) {
+    fetchTodayAttendance();
+  }
+}, [user]);
+
+
   useEffect(() => {
     if (isWorking) {
       timerRef.current = setInterval(() => setElapsed((s) => s + 1), 1000);
@@ -286,7 +330,84 @@ export function useDashboard() {
   }, [isWorking]);
 
   const handleStartWorking = useCallback(() => { setElapsed(0); setIsWorking(true);  }, []);
-  const handleEndWorking   = useCallback(() => { setIsWorking(false); }, []);
+  const handleEndWorking = useCallback(async () => {
+  try {
+    // 1️⃣ Make sure we have today's record from context
+    if (!currentCheckOutContext || !currentCheckOutContext.record) {
+      notify('No check-in record found for today.', 'error');
+      return;
+    }
+
+    const { record, workHours } = currentCheckOutContext;
+    const currentTime = getCurrentDateTime();
+
+    // 2️⃣ Safety: block if < 4.5 hours
+    if (workHours < 4.5) {
+      notify(
+        'You cannot check out before completing 4.5 hours of work.',
+        'error'
+      );
+      return;
+    }
+
+    // 3️⃣ Between 4.5 and 8 hours → warning + confirmation
+    if (workHours < 8) {
+      const proceed = await showConfirm(
+        `You have worked ${workHours.toFixed(2)} hours. ` +
+        'This will be marked as a half day.',
+        'Half Day Warning',
+        '⏳'
+      );
+      if (!proceed) return; // user cancelled
+    }
+
+    // 4️⃣ Try to get location, but don’t block checkout if it fails
+    let location = null;
+    if (navigator.geolocation) {
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+        });
+        location = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+      } catch (geoErr) {
+        console.warn('Checkout without location (non-blocking):', geoErr);
+      }
+    }
+
+    // 5️⃣ Call checkout API
+    const result = await apiCall('check-out', 'POST', {
+      employee_id: user.id,
+      date: currentTime.date,          // or record.date
+      check_out: currentTime.time,
+      location
+    });
+
+    if (!result || result.success !== true) {
+      console.error('Checkout API raw response:', result && result.raw);
+      notify(
+        (result && result.message) || 'Failed to record check-out',
+        'error'
+      );
+      return;
+    }
+
+    // 6️⃣ Success → stop timer + update UI
+    if (timerRef.current) clearInterval(timerRef.current);
+    setIsWorking(false);
+
+    let message = 'Check-out recorded successfully!';
+    if (result.is_half_day && typeof result.work_hours === 'number') {
+      message += ` (Marked as half day - ${result.work_hours.toFixed(1)} hours)`;
+    }
+    notify(message, 'success');
+  } catch (err) {
+    console.error('Checkout error:', err);
+    notify('Unexpected error during check-out', 'error');
+  }
+}, [currentCheckOutContext, user]);
 
   // ── Event toggles (keyed by event id)
   const [eventToggles, setEventToggles] = useState(

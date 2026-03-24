@@ -36,6 +36,36 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/armeabi-v7a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# LIB_CUSTOM_SRCS at /home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt:20 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDialogPickerMeasurementsManager.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDialogPickerShadowNode.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDialogPickerState.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDropdownPickerMeasurementsManager.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDropdownPickerShadowNode.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/RNCAndroidDropdownPickerState.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/rnpicker.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CODEGEN_SRCS at /home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt:21 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/ComponentDescriptors.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/EventEmitters.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/Props.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/ShadowNodes.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnpicker/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB

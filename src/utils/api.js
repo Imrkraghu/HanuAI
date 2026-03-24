@@ -1,3 +1,4 @@
+import { formatTime, formatDate, serverTimeOffset } from '../utils/datetime.js';
 const apiBaseUrl = "https://attendance.hanuai.com/api";
 export async function apiCall(path, method = 'GET', data = null, token = null) {
   method = (method || 'GET').toUpperCase();
@@ -23,4 +24,18 @@ export async function apiCall(path, method = 'GET', data = null, token = null) {
     console.error("API Call failed:", error);
     return { success: false, message: "Network error or server unreachable" };
   }
+}
+
+export async function getCurrentISTDate() {
+    const syncedNow = new Date(Date.now() + serverTimeOffset);
+    const utc = syncedNow.getTime() + (syncedNow.getTimezoneOffset() * 60000);
+    return new Date(utc + (3600000 * 5.5));
+}
+export  function getCurrentDateTime() {
+    // Always use synchronized server IST — never the device clock
+    const now = getCurrentISTDate();
+    return {
+        date: formatDate(now),
+        time: formatTime(now)
+    };
 }
