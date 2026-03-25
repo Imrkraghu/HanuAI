@@ -53,14 +53,23 @@ export function getCurrentDateTime() {
   return { date, time };
 }
 
-export async function formatTime(date) {
+export function formatTime(date) {
     return date.toTimeString().split(' ')[0];
 }
-export async function formatDate(date) {
+export function formatDate(date) {
   // YYYY-MM-DD format
   return date.toISOString().split('T')[0];
 }
 
+// export function formatTime(date) {
+//   const d = date instanceof Date ? date : new Date(date);
+//   return d.toTimeString().split(' ')[0]; // HH:MM:SS
+// }
+
+// export function formatDate(date) {
+//   const d = date instanceof Date ? date : new Date(date);
+//   return d.toISOString().split('T')[0]; // YYYY-MM-DD
+// }
 
 export async function isWithinAttendanceWindow(department, role) {
   const now = new Date();

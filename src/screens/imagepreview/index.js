@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { apiCall, getCurrentDateTime } from '../../utils/api';
+import { apiCall } from '../../utils/api';
 import { Alert } from 'react-native';
+import { getCurrentDateTime } from '../../utils/datetime';
 
 export async function MarkAttendance({ selectedType, selectedOffice, capturedPhotoData, location_lat, location_lng, navigation }) {
   if (!selectedType) {
@@ -18,16 +19,6 @@ export async function MarkAttendance({ selectedType, selectedOffice, capturedPho
 
   const currentUser = JSON.parse(await AsyncStorage.getItem('attendanceUser'));
   const now = getCurrentDateTime();
-  // console.log("photo location:", currentPhotoLocation);
-  // Location check
-  // if (!currentPhotoLocation) {
-  //   Alert.alert('Error', 'Location access is mandatory. Please enable GPS and try again.');
-  //   return;
-  // }
-  // if (currentPhotoLocation.accuracy > 200) {
-  //   Alert.alert('Error', `Location accuracy is too low (±${Math.round(currentPhotoLocation.accuracy)}m). Please wait for a better GPS signal.`);
-  //   return;
-  // }
 
   const payload = {
     employee_id: currentUser.id,
