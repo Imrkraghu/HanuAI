@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiCall } from '../../utils/api';
 import {notify, showConfirm} from '../../utils/notification/notification';
 import { getCurrentDateTime } from '../../utils/datetime';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -259,7 +261,7 @@ export function useDashboard() {
   // ── Location + Weather
   const [location, setLocation] = useState({ city: 'Loading…' });
   const [weather,  setWeather]  = useState(DEFAULT_WEATHER);
-
+  const navigation = useNavigation();
   useEffect(() => {
     (async () => {
       const loc = await getLocation();
@@ -277,29 +279,43 @@ export function useDashboard() {
 
   // ── Working timer
   const [isWorking, setIsWorking] = useState(false);
+  const [alreadyDone, setAlreadyDone] = useState(false);
   const [elapsed,   setElapsed]   = useState(0);
   const timerRef                  = useRef(null);
 
 useEffect(() => {
   const fetchTodayAttendance = async () => {
     try {
-      console.log('Fetching today\'s attendance for user ID:', user.id);
+      console.log("Fetching today's attendance for user ID:", user.id);
       const result = await apiCall('today-attendance?employee_id=' + user.id, 'GET');
       console.log('Attendance API result:', result);
-      if (result && result.success && result.record) {
-        if (result.record.check_in_time) {
-          setIsWorking(true);
-           // Parse the check-in time string into a Date
-          const checkIn = new Date(`${result.record.date}T${result.record.check_in_time}`);
 
-          // Calculate elapsed seconds since check-in
+      if (result && result.success && result.record) {
+        const record = result.record;
+
+        // 🚫 If checkout exists → block check-in for the day
+        if (record.check_out_time) {
+          setIsWorking(false);
+          setElapsed(0);
+          setCurrentCheckOutContext(null);
+          setAlreadyDone(true);
+          console.log("User has already checked out today. No further check-in allowed.");
+          return;
+        }
+
+        // ✅ If check-in exists but no checkout yet
+        if (record.check_in_time) {
+          setIsWorking(true);
+
+          const checkIn = new Date(`${record.date}T${record.check_in_time}`);
           const now = new Date();
           const diffSecs = Math.floor((now.getTime() - checkIn.getTime()) / 1000);
 
           setElapsed(diffSecs); // seed timer from check-in
           const workHours = diffSecs / 3600;
-          setCurrentCheckOutContext({ record: result.record, workHours });
+          setCurrentCheckOutContext({ record, workHours });
         } else {
+          // No check-in yet
           setIsWorking(false);
           setElapsed(0);
           setCurrentCheckOutContext(null);
@@ -309,7 +325,7 @@ useEffect(() => {
         setElapsed(0);
       }
     } catch (e) {
-      console.warn('Failed to fetch today\'s attendance:', e);
+      console.warn("Failed to fetch today's attendance:", e);
       setIsWorking(false);
     }
   };
@@ -329,7 +345,24 @@ useEffect(() => {
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [isWorking]);
 
-  const handleStartWorking = useCallback(() => { setElapsed(0); setIsWorking(true);  }, []);
+
+const handleStartWorking = useCallback(async () => {
+  if (alreadyDone) {
+    Alert.alert('Already Done', 'You have already checked out today. No further check-in allowed.');
+    return;
+  }
+
+  // If not checked in yet → navigate
+  if (!isWorking) {
+    navigation.navigate('markattendance');
+    return;
+  }
+
+  // If checked in but not checked out → resume timer
+  setElapsed(0);
+  setIsWorking(true);
+}, [alreadyDone, isWorking, navigation]);
+
   const handleEndWorking = useCallback(async () => {
   try {
     // 1️⃣ Make sure we have today's record from context
@@ -451,6 +484,7 @@ useEffect(() => {
     // Timer
     isWorking,
     formattedTime,
+    alreadyDone,
     handleStartWorking,
     handleEndWorking,
 

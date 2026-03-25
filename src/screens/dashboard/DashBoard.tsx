@@ -11,7 +11,7 @@ import { useDashboard } from './Dashboard.js';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles, {PRIMARY} from './Dashboard.style.js';
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 type RootStackParamList = {
   Login: undefined;
   Dashboard: undefined;
@@ -132,6 +132,7 @@ const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(
     handleMoodSelect,
     isWorking,
     formattedTime,
+    alreadyDone,
     handleStartWorking,
     handleEndWorking,
     todayEvents,
@@ -210,9 +211,12 @@ const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(
             </TouchableOpacity>
           </View>
         ) : (
-          <TouchableOpacity style={styles.startBtn} onPress={() => navigation.navigate('markattendance')} activeOpacity={0.85}>
-            <Text style={styles.startBtnText}>Start Working</Text>
-          </TouchableOpacity>
+                <TouchableOpacity style={styles.startBtn} onPress={handleStartWorking} activeOpacity={0.85}>
+        <Text style={styles.startBtnText}>
+          {alreadyDone? 'Already Done for Today' : 'Start Working'}
+        </Text>
+      </TouchableOpacity>
+
         )}
         </View>
 
