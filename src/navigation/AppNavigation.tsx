@@ -12,7 +12,8 @@ import ImagePreviewScreen from '../screens/imagepreview/imagepreview';
 import LeaveApplicationScreen from '../screens/leave/leave';
 import RecordsScreen from '../screens/records/records';
 import TaskBoard from '../screens/tasks/task';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/index';
 export type RootStackParamList = {
   Login: undefined;
   Dashboard: undefined;
@@ -28,9 +29,32 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
+  const isAuthenticated = useSelector((state: RootState) => state.session.isAuthenticated);
+  console.log("authenticated or not", isAuthenticated);
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Dashboard">
+       {isAuthenticated ? (
+        <Stack.Navigator>
+          <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+          <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen name="Signup" component={SignupScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="markattendance" component={FaceDetectionScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="imagepreview" component={ImagePreviewScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="LeaveApplication" component={LeaveApplicationScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Records" component={RecordsScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="TaskBoard" component={TaskBoard} options={{ headerShown: false }}/>
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator>
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -53,6 +77,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Records" component={RecordsScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="TaskBoard" component={TaskBoard} options={{ headerShown: false }}/>
       </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }

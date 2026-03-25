@@ -18,7 +18,7 @@ export async function handleLogin(username, password) {
       await AsyncStorage.setItem('authToken', loginRes.token);
     }
 
-    return { success: true, user: loginRes.user };
+    return { success: true, user: loginRes.user,token: loginRes.token };
   } catch (error) {
     console.error("Login process error:", error);
     return { success: false, message: "Unexpected error during login" };

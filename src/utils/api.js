@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 const apiBaseUrl = "https://attendance.hanuai.com/api";
 export async function apiCall(path, method = 'GET', data = null, token = null) {
   method = (method || 'GET').toUpperCase();
@@ -21,6 +22,10 @@ export async function apiCall(path, method = 'GET', data = null, token = null) {
     return JSON.parse(text);
   } catch (error) {
     console.error("API Call failed:", error);
-    return { success: false, message: "Network error or server unreachable" };
+    // return { success: false, message: "Network error or server unreachable" };
+    Alert.alert(
+          'Server Unreachable',
+          'Try Again Later'
+        );
   }
 }

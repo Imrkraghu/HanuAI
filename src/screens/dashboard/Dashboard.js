@@ -5,6 +5,8 @@ import {notify, showConfirm} from '../../utils/notification/notification';
 import { getCurrentDateTime } from '../../utils/datetime';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUser } from '../../store/sessionSlice';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -243,8 +245,11 @@ export function useDashboard() {
     return () => clearInterval(tick);
   }, []);
 
+  //redux
+  const dispatch = useDispatch();
+  const reduxUser = useSelector((state) => state.session?.user);
   // ── User
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(reduxUser ?? null);
   const [currentCheckOutContext, setCurrentCheckOutContext] = useState(null);
   useEffect(() => {
     (async () => {
@@ -257,6 +262,15 @@ export function useDashboard() {
       }
     })();
   }, []);
+
+  //   useEffect(() => {
+  //   if (reduxUser) {
+  //     setUser(reduxUser);
+  //     console.log('Loaded user from Redux:', reduxUser);
+  //   } else {
+  //     setUser(null);
+  //   }
+  // }, [reduxUser]);
 
   // ── Location + Weather
   const [location, setLocation] = useState({ city: 'Loading…' });
@@ -509,5 +523,9 @@ const handleStartWorking = useCallback(async () => {
     navTabs:NAV_TABS,
     showNavTabs,
     toggleNavTabs,
+    
+    dispatch,
+    clearSession: () => dispatch(clearUser()),
+    rawUser: user,
   };
 }

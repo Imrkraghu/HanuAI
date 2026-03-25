@@ -4,22 +4,22 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   Alert,
   ActivityIndicator,
 } from 'react-native';
-
 import Svg, { Circle } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useDispatch } from 'react-redux';
 
 import Avatar1 from '../../assets/svg/avatar1.svg';
 import Avatar2 from '../../assets/svg/avatar2.svg';
 import Avatar3 from '../../assets/svg/avatar3.svg';
-
 import styles from './login.style.js';
+import { StyleSheet } from 'react-native';
 
 import { handleLogin } from './index';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { setUser } from '../../store/sessionSlice'; // <-- import setUser
 
 type RootStackParamList = {
   Login: undefined;
@@ -29,6 +29,7 @@ type RootStackParamList = {
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const dispatch = useDispatch(); // ✅ call at top level
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,11 +45,16 @@ const LoginScreen: React.FC = () => {
     try {
       const result = await handleLogin(username, password);
       if (result.success) {
+        // ✅ dispatch to Redux so redux-persist can persist the session
+        dispatch(setUser({ user: result.user, token: result.token }));
+
+        // navigate after dispatch
         navigation.replace('Dashboard');
       } else {
         Alert.alert('Login Failed', result.message);
       }
     } catch (err) {
+      console.error('Login error:', err);
       Alert.alert('Error', 'Something went wrong');
     } finally {
       setLoading(false);
@@ -57,11 +63,7 @@ const LoginScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-
-      {/* TOP SECTION */}
       <View style={styles.topContainer}>
-
-        {/* Background dots */}
         <Svg style={StyleSheet.absoluteFill}>
           <Circle cx="30" cy="60" r="8" fill="#B4F8C8" />
           <Circle cx="320" cy="100" r="10" fill="#A0E7E5" />
@@ -69,27 +71,19 @@ const LoginScreen: React.FC = () => {
           <Circle cx="50" cy="200" r="6" fill="#CDB4DB" />
         </Svg>
 
-        {/* Avatar Cluster */}
         <View style={styles.avatarContainer}>
           <Avatar1 width={150} height={150} style={styles.avatarLeft} />
           <Avatar2 width={150} height={150} style={styles.avatarRight} />
           <Avatar3 width={220} height={220} style={styles.avatarBottom} />
+        </View>
+      </View>
 
-          {/* Center Tag */}
-          {/* <View style={styles.centerTag}>
-            <Text style={styles.centerText}>hello</Text>
-          </View> */}
-        </View>
-        </View>
-        {/* Title */}
-        <View style={styles.row}>
+      <View style={styles.row}>
         <Text style={styles.title}>Let’s get you</Text>
         <Text style={styles.sudotitle}>signed in!</Text>
       </View>
 
-      {/* BOTTOM CARD */}
       <View style={styles.card}>
-
         <Text style={styles.subtitle}>Sign In</Text>
 
         <TextInput
@@ -126,7 +120,6 @@ const LoginScreen: React.FC = () => {
             Don’t have an account? <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
-
       </View>
     </View>
   );
