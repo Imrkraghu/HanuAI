@@ -1,0 +1,1 @@
+/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/RelWithDebInfo/3j5l2420/obj/x86_64

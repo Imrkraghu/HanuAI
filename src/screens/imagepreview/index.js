@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNFS from 'react-native-fs';
 import { apiCall } from '../../utils/api';
 import { Alert } from 'react-native';
 import { getCurrentDateTime } from '../../utils/datetime';
@@ -19,6 +20,7 @@ export async function MarkAttendance({ selectedType, selectedOffice, capturedPho
 
   const currentUser = JSON.parse(await AsyncStorage.getItem('attendanceUser'));
   const now = getCurrentDateTime();
+  const base64Image = await RNFS.readFile(capturedPhotoData, 'base64')
 
   const payload = {
     employee_id: currentUser.id,
@@ -31,7 +33,8 @@ export async function MarkAttendance({ selectedType, selectedOffice, capturedPho
       latitude: location_lat,
       longitude: location_lng,
     },
-    photo: capturedPhotoData,
+    // photo: capturedPhotoData,    //this sends only the url of the file
+    photo: base64Image,   //this sends the json data which will be accepted by the backend
   };
 
   try {

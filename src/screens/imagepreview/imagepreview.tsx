@@ -77,7 +77,7 @@ const ImagePreviewScreen = () => {
           MarkAttendance({
             selectedType: route.params?.workMode || 'office',
             selectedOffice: route.params?.officeId || null,
-            capturedPhotoData: imageUri, // or however you store photo data
+            capturedPhotoData: imageUri,
             location_lat: route.params?.latitude || null,
             location_lng: route.params?.longitude || null,
             navigation
