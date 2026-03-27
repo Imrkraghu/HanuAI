@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiCall } from '../../utils/api';
 import {notify, showConfirm} from '../../utils/notification/notification';
-import { getCurrentDateTime } from '../../utils/datetime';
+import { getCurrentDateTime, formatDuration } from '../../utils/datetime';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -217,16 +217,16 @@ export async function fetchWeather(lat, lon) {
  *
  * @returns {Promise<{ lat: number; lon: number; city: string }>}
  */
-export async function getLocation() {
+export async function getweatherlocation() {
   return new Promise((resolve) => {
     if (typeof navigator !== 'undefined' && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude, city: 'Your Location' }),
-        ()    => resolve({ lat: 30.9010,  lon: 75.8573,  city: 'Ludhiana, Punjab' }),
+        ()    => resolve({ lat: 30.7333, lon: 76.7794, city: 'Chandigarh, India' }),
         { timeout: 5000 }
       );
     } else {
-      resolve({ lat: 30.9010, lon: 75.8573, city: 'Ludhiana, Punjab' });
+      resolve({ lat: 30.7333, lon: 76.7794, city: 'Chandigarh, India' });
     }
   });
 }
@@ -263,22 +263,13 @@ export function useDashboard() {
     })();
   }, []);
 
-  //   useEffect(() => {
-  //   if (reduxUser) {
-  //     setUser(reduxUser);
-  //     console.log('Loaded user from Redux:', reduxUser);
-  //   } else {
-  //     setUser(null);
-  //   }
-  // }, [reduxUser]);
-
   // ── Location + Weather
   const [location, setLocation] = useState({ city: 'Loading…' });
   const [weather,  setWeather]  = useState(DEFAULT_WEATHER);
   const navigation = useNavigation();
   useEffect(() => {
     (async () => {
-      const loc = await getLocation();
+      const loc = await getweatherlocation();
       setLocation(loc);
       const wx = await fetchWeather(loc.lat, loc.lon);
       setWeather(wx);
@@ -397,16 +388,37 @@ const handleStartWorking = useCallback(async () => {
       return;
     }
 
-    // 3️⃣ Between 4.5 and 8 hours → warning + confirmation
-    if (workHours < 8) {
+ // 3️⃣ Between 4.5 and 8 hours → warning + confirmation
+
+    if (workHours <= 8) {
+      const durationText = formatDuration(workHours);
       const proceed = await showConfirm(
-        `You have worked ${workHours.toFixed(2)} hours. ` +
+        `You have worked ${durationText}` +
         'This will be marked as a half day.',
         'Half Day Warning',
         '⏳'
       );
       if (!proceed) return; // user cancelled
-    }
+    }else if(workHours >= 8.0167){
+      const durationText = formatDuration(workHours);
+      const proceed = await showConfirm(
+        `You have worked ${durationText}` +
+        'You can log out now.',
+        'Full Day',
+       '✅'
+      );
+    }else {
+  // Exactly 8h but not 1 minute more → still half day
+  const durationText = formatDuration(workHours);
+  const proceed = await showConfirm(
+    `You have worked ${durationText}` +
+    'This will be marked as a half day.',
+    'Half Day Warning',
+    '⏳'
+  );
+  if (!proceed) return;
+}
+
 
     // 4️⃣ Try to get location, but don’t block checkout if it fails
     let location = null;

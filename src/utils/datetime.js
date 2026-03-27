@@ -61,15 +61,11 @@ export function formatDate(date) {
   return date.toISOString().split('T')[0];
 }
 
-// export function formatTime(date) {
-//   const d = date instanceof Date ? date : new Date(date);
-//   return d.toTimeString().split(' ')[0]; // HH:MM:SS
-// }
-
-// export function formatDate(date) {
-//   const d = date instanceof Date ? date : new Date(date);
-//   return d.toISOString().split('T')[0]; // YYYY-MM-DD
-// }
+export function formatDuration(hours) {
+  const h = Math.floor(hours);
+  const m = Math.round((hours - h) * 60);
+  return `${h}h ${m}m`;
+}
 
 export async function isWithinAttendanceWindow(department, role) {
   const now = new Date();

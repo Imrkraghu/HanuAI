@@ -17,6 +17,7 @@ import { Camera, useCameraDevice, useCameraFormat } from 'react-native-vision-ca
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles, {PRIMARY} from './camera.style.js';
+import { getCurrentLocation } from '../../utils/location.js';
 
 import {
   calculateDistance,
@@ -25,7 +26,6 @@ import {
   fetchOffices,
   fetchTodayAttendance,
   findNearestOffice,
-  getCurrentLocation,
   markAttendance,
   requestCameraPermission,
   requestLocationPermission,

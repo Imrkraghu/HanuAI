@@ -162,11 +162,15 @@ const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(
             style={styles.iconBtn}
             onPress={() => navigation.navigate('Settings')}
           >
-            {/* <Icon name="person" size={30} color="#900" /> */}
             <Text>⚙️</Text>
           </TouchableOpacity>
           <Text style={styles.greeting}>{greeting}, {userName}!</Text>
-          <Text style={styles.headerIcon}>🔔</Text>
+          <TouchableOpacity
+            style={styles.iconBtn}
+            onPress={() => navigation.navigate('notification')}
+          >
+            <Text style={styles.headerIcon}>🔔</Text>
+          </TouchableOpacity>
         </View>
 
         {/* ── Date, Location & Live Weather ── */}

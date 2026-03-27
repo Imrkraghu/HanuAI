@@ -12,6 +12,7 @@ import ImagePreviewScreen from '../screens/imagepreview/imagepreview';
 import LeaveApplicationScreen from '../screens/leave/leave';
 import RecordsScreen from '../screens/records/records';
 import TaskBoard from '../screens/tasks/task';
+import NotificationPage from '../screens/notification/notification';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/index';
 export type RootStackParamList = {
@@ -24,6 +25,7 @@ export type RootStackParamList = {
   LeaveApplication: undefined;
   Records: undefined;
   TaskBoard: undefined;
+  notification:undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,6 +46,11 @@ export default function AppNavigator() {
          <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="notification"
+          component={NotificationPage}
           options={{ headerShown: false }}
         />
          <Stack.Screen name="Signup" component={SignupScreen} options={{ headerShown: false }}/>
