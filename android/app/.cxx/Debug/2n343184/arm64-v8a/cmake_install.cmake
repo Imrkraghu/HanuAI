@@ -44,9 +44,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/RNImageResizerSpec_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rnasyncstorage_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rnpicker_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rnskia_autolinked_build/cmake_install.cmake")
+  include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rngesturehandler_codegen_autolinked_build/cmake_install.cmake")
+  include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/RNGetRandomValuesSpec_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rnreanimated_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/safeareacontext_autolinked_build/cmake_install.cmake")
   include("/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/arm64-v8a/rnscreens_autolinked_build/cmake_install.cmake")

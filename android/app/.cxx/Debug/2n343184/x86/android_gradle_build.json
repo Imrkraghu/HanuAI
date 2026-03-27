@@ -1,7 +1,11 @@
 {
   "buildFiles": [
+    "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/home/admin1/Documents/hanuai/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/home/admin1/Documents/hanuai/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt",
     "/home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/home/admin1/Documents/hanuai/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/home/admin1/Documents/hanuai/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
     "/home/admin1/Documents/hanuai/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
@@ -32,6 +36,7 @@
       "artifactName": "appmodules",
       "output": "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libappmodules.so",
       "runtimeFiles": [
+        "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libreact_codegen_rnpicker.so",
         "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libreact_codegen_safeareacontext.so",
         "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libreact_codegen_rnscreens.so",
         "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libreact_codegen_rnsvg.so",
@@ -39,6 +44,16 @@
         "/home/admin1/.gradle/caches/9.0.0/transforms/df62f4a3c6818dc3cc09553936c6f2fd/transformed/react-android-0.84.1-debug/prefab/modules/jsi/libs/android.x86/libjsi.so",
         "/home/admin1/.gradle/caches/9.0.0/transforms/df62f4a3c6818dc3cc09553936c6f2fd/transformed/react-android-0.84.1-debug/prefab/modules/reactnative/libs/android.x86/libreactnative.so"
       ]
+    },
+    "react_codegen_RNGetRandomValuesSpec::@6e1160200c59ddcfca1e": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_RNGetRandomValuesSpec"
+    },
+    "react_codegen_RNImageResizerSpec::@781b039b46879c00d842": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_RNImageResizerSpec"
     },
     "react_codegen_RNVectorIconsSpec::@479809fae146501fd34d": {
       "toolchain": "toolchain",
@@ -54,6 +69,22 @@
       "toolchain": "toolchain",
       "abi": "x86",
       "artifactName": "react_codegen_rnasyncstorage"
+    },
+    "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_rngesturehandler_codegen"
+    },
+    "react_codegen_rnpicker::@e8bb2e9e833f47d0d516": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_rnpicker",
+      "output": "/home/admin1/Documents/hanuai/android/app/build/intermediates/cxx/Debug/2n343184/obj/x86/libreact_codegen_rnpicker.so",
+      "runtimeFiles": [
+        "/home/admin1/.gradle/caches/9.0.0/transforms/df62f4a3c6818dc3cc09553936c6f2fd/transformed/react-android-0.84.1-debug/prefab/modules/reactnative/libs/android.x86/libreactnative.so",
+        "/home/admin1/.gradle/caches/9.0.0/transforms/df62f4a3c6818dc3cc09553936c6f2fd/transformed/react-android-0.84.1-debug/prefab/modules/jsi/libs/android.x86/libjsi.so",
+        "/home/admin1/.gradle/caches/9.0.0/transforms/6cb94eb4240b26bae55579cb79d8f81a/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.x86/libfbjni.so"
+      ]
     },
     "react_codegen_rnreanimated::@8afabad14bfffa3f8b9a": {
       "toolchain": "toolchain",

@@ -1,5 +1,7 @@
 import { Alert } from "react-native";
-const apiBaseUrl = "https://attendance.hanuai.com/api";
+export const apiBaseUrl = "https://attendance.hanuai.com/api";
+// export const apiBaseUrl = "http://127.0.0.1:8000/api";
+
 export async function apiCall(path, method = 'GET', data = null, token = null) {
   method = (method || 'GET').toUpperCase();
   let cleanPath = path.startsWith('/') ? path.slice(1) : path;
@@ -19,6 +21,7 @@ export async function apiCall(path, method = 'GET', data = null, token = null) {
   try {
     const res = await fetch(url, opts);
     const text = await res.text();
+    console.log("raw response:", text);
     return JSON.parse(text);
   } catch (error) {
     console.error("API Call failed:", error);

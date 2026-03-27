@@ -12,6 +12,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/RNImageResizerSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/ComponentDescriptors.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/EventEmitters.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/Props.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/ShadowNodes.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/@bam.tech/react-native-image-resizer/android/build/generated/source/codegen/jni/react/renderer/components/RNImageResizerSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB
@@ -84,6 +108,54 @@ set(OLD_GLOB
   "/home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/Props.cpp"
   "/home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/ShadowNodes.cpp"
   "/home/admin1/Documents/hanuai/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/rngesturehandler_codegen-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/ComponentDescriptors.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/EventEmitters.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/Props.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/ShadowNodes.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/react/renderer/components/rngesturehandler_codegen/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/RNGetRandomValuesSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/admin1/Documents/hanuai/android/app/.cxx/Debug/2n343184/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/*.cpp")
+set(OLD_GLOB
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/ComponentDescriptors.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/EventEmitters.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/Props.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/ShadowNodes.cpp"
+  "/home/admin1/Documents/hanuai/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/react/renderer/components/RNGetRandomValuesSpec/States.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

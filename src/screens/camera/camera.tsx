@@ -90,6 +90,7 @@ const FaceDetectionScreen: React.FC = () => {
   const device = useCameraDevice('front');
   const format = useCameraFormat(device, [
     { videoResolution: { width: 1280, height: 720 } },
+    {photoResolution : {width:720, height:720} },
     { fps: 30 },
   ]);
 
@@ -325,7 +326,8 @@ useEffect(() => {
     if (!cameraRef.current || capturing) return;
     setCapturing(true);
     try {
-      const photo = await cameraRef.current.takePhoto({ qualityPrioritization: 'quality' });
+      console.log("cjsdj", cameraRef);
+      const photo = await cameraRef.current.takeSnapshot({ quality:30 });
       setShowCamera(false);
       const fileUri = `file://${photo.path}`;
       // Navigate to preview
@@ -702,6 +704,7 @@ useEffect(() => {
                 style={StyleSheet.absoluteFill}
                 device={device}
                 format={format}
+                photoQualityBalance='speed'
                 isActive={showCamera}
                 photo
               />
