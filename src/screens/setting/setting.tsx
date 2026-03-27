@@ -154,7 +154,7 @@ const SettingsScreen: React.FC = () => {
       <View style={styles.footer}>
 
         <Text style={styles.footerText}>
-          App version: 1.0
+          App version: 0.2
         </Text>
 
         <Text style={styles.footerText}>
